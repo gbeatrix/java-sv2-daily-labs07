@@ -11,7 +11,7 @@ public class Human {
         if (thisYear - yearOfBirth > 120) {
             throw new IllegalArgumentException("Nem lehet 120 évesnél öregebb!");
         }
-        if (name == null || name.split(" ").length <= 1) {
+        if (name == null || name.trim().split(" ").length <= 1) {
             throw new IllegalArgumentException("Vezeték vagy keresztnév hiányzik!");
         }
         this.name = name;

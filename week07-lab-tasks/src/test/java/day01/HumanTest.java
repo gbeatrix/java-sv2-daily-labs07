@@ -28,4 +28,18 @@ class HumanTest {
                 () -> human = new Human("Gipsz", 1980));
         assertEquals("Vezeték vagy keresztnév hiányzik!", err.getMessage());
     }
+
+    @Test
+    void testCreateHumanInvalidNameWhiteSpaces() {
+        IllegalArgumentException err = assertThrows(IllegalArgumentException.class,
+                () -> human = new Human("   Gipsz ", 1980));
+        assertEquals("Vezeték vagy keresztnév hiányzik!", err.getMessage());
+    }
+
+    @Test
+    void testCreateHumanInvalidNameNull() {
+        IllegalArgumentException err = assertThrows(IllegalArgumentException.class,
+                () -> human = new Human(null, 1980));
+        assertEquals("Vezeték vagy keresztnév hiányzik!", err.getMessage());
+    }
 }
