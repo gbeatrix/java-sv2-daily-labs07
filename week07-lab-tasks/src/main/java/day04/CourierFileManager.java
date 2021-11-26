@@ -23,7 +23,7 @@ public class CourierFileManager {
                 int nth = Integer.parseInt(parts[1]);
                 int km = Integer.parseInt(parts[2]);
                 courier.addRide(new Ride(day, nth, km));
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("Illegal format.", e);
             }
         }
