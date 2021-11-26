@@ -11,25 +11,26 @@ public class Courier {
     }
 
     public void addRide(Ride ride) {
-        if (rides.isEmpty()) {
+        if (isNewDay(ride)) {
             if (ride.getNth() == 1) {
                 rides.add(ride);
             } else {
                 throw new IllegalArgumentException("Illegal nth for new day.");
             }
-        } else if (rides.get(rides.size() - 1).getDay() > ride.getDay()) {
-            throw new IllegalArgumentException("Illegal day.");
-        } else if (rides.get(rides.size() - 1).getDay() < ride.getDay()) {
-            if (ride.getNth() == 1) {
-                rides.add(ride);
-            } else {
-                throw new IllegalArgumentException("Illegal nth for new day.");
-            }
-        } else if (/* rides.get(rides.size() - 1).getDay() == ride.getDay() && */
-                rides.get(rides.size() - 1).getNth() + 1 != ride.getNth()) {
-            throw new IllegalArgumentException("Illegal nth.");
-        } else {
+        } else if (ride.getNth() == rides.get(rides.size() - 1).getNth() + 1) { // same day
             rides.add(ride);
+        } else {
+            throw new IllegalArgumentException("Illegal nth.");
+        }
+    }
+
+    private boolean isNewDay(Ride ride) {
+        if (rides.isEmpty() || rides.get(rides.size() - 1).getDay() < ride.getDay()) {
+            return true;
+        } else if (rides.get(rides.size() - 1).getDay() == ride.getDay()) {
+            return false;
+        } else {
+            throw new IllegalArgumentException("Illegal day.");
         }
     }
 }
